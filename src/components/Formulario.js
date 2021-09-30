@@ -1,18 +1,16 @@
-import React, { useContext, useState } from "react";
-import { CategoriasContext } from "../context/CategoriasContext";
-import { RecetasContext } from "../context/RecetasContext";
+import React, { useContext, useState } from 'react';
+import { ServersContext } from '../context/ServersContext';
 
 const Formulario = () => {
   const [busqueda, guardarBusqueda] = useState({
-    nombre: "",
-    categoria: "",
+    descripcion: '',
+    server: '',
   });
 
-  const { categorias } = useContext(CategoriasContext);
+  const { buscarErrores, guardarConsultar, servers } =
+    useContext(ServersContext);
 
-  const { buscarRecetas, guardarConsultar } = useContext(RecetasContext);
-
-  const obtenerDatosRecetas = (e) => {
+  const obtenerDatos = (e) => {
     guardarBusqueda({
       ...busqueda,
       [e.target.name]: e.target.value,
@@ -23,51 +21,59 @@ const Formulario = () => {
     <form
       className="col-12"
       onSubmit={(e) => {
+        console.log(busqueda);
         e.preventDefault();
-        buscarRecetas(busqueda);
+        buscarErrores(busqueda);
         guardarConsultar(true);
       }}
     >
       <fieldset className="text-center">
-        <legend>Busca Bebidas por categorias o ingredientes</legend>
+        <legend>Monitoreo Servidores MELI</legend>
       </fieldset>
       <div className="row mt-4">
         <div className="col-md-4">
           <input
-            name="nombre"
+            data-testid="descripcion"
+            name="descripcion"
             className="form-control"
             type="text"
-            placeholder="buscar por ingrediente"
-            onChange={obtenerDatosRecetas}
+            placeholder="Descripcion de falla"
+            onChange={obtenerDatos}
           />
         </div>
         <div className="col-md-4">
           <select
             className="form-control"
-            name="categoria"
-            onChange={obtenerDatosRecetas}
+            data-testid="server"
+            name="server"
+            onChange={obtenerDatos}
           >
-            <option value="">Selecciona categoria</option>
-            {categorias.map((categoria) => {
-              return (
-                <option
-                  name="categoria"
-                  key={categoria.strCategory}
-                  value={categoria.strCategory}
-                  onChange={obtenerDatosRecetas}
-                >
-                  {categoria.strCategory}
-                </option>
-              );
-            })}
+            <option value="" data-testid="serveroptions">
+              Selecciona server
+            </option>
+            {servers &&
+              servers.data &&
+              servers.data.map((server, index) => {
+                return (
+                  <option
+                    name="server"
+                    key={index}
+                    value={server.server}
+                    onChange={obtenerDatos}
+                  >
+                    {server.server}
+                  </option>
+                );
+              })}
           </select>
         </div>
 
         <div className="col-md-4">
           <input
+            data-testid="btn-submit"
             type="submit"
             className="btn btn-primary"
-            value="Buscar bebidas"
+            value="Buscar Fallos"
           />
         </div>
       </div>

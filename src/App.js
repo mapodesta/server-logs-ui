@@ -1,29 +1,21 @@
-import React from "react";
-import Header from "./components/header";
-import Formulario from "./components/Formulario";
-import ListaRecetas from "./components/ListaRecetas";
-
-import CategoriasProvider from "./context/CategoriasContext";
-import RecetasProvider from "./context/RecetasContext";
-import ModalProvider from "./context/ModalContext";
+import React from 'react';
+import Header from './components/header';
+import Formulario from './components/Formulario';
+import ListaErrores from './components/ListaErrores';
+import ServersProvider from './context/ServersContext';
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.css';
 
 function App() {
   return (
-    <CategoriasProvider>
-      <RecetasProvider>
-        <ModalProvider>
-          <Header />
-
-          <div className="container mt-5">
-            <div className="row">
-              <Formulario />
-            </div>
-
-            <ListaRecetas />
-          </div>
-        </ModalProvider>
-      </RecetasProvider>
-    </CategoriasProvider>
+    <ServersProvider>
+      <Header />
+      <div className="container mt-5">
+        <div className="row">
+          <Formulario />
+        </div>
+        <ListaErrores />
+      </div>
+    </ServersProvider>
   );
 }
 
