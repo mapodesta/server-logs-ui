@@ -29,7 +29,7 @@ const ServersProvider = (props) => {
       };
       obtenerDataServer();
     }
-  }, [busqueda]);
+  }, [busqueda, consultar, server, descripcion]);
 
   useEffect(() => {
     const obtenerResultado = async () => {
