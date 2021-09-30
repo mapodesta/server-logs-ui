@@ -1,7 +1,6 @@
-import Formulario from '../components/Formulario';
+import Formulario from '../Formulario';
 import { render, screen, fireEvent } from '@testing-library/react';
-import ServersProvider from '../context/ServersContext';
-import '@testing-library/jest-dom/extend-expect';
+import ServersProvider from '../../context/ServersContext';
 
 test('<Formulario />Cargar el formulario y revisar que todo sea correcto', () => {
   const wrapper = render(
@@ -16,24 +15,22 @@ test('<Formulario />Cargar el formulario y revisar que todo sea correcto', () =>
 });
 
 test('<Formulario />Cargar el formulario y revisar el submit', () => {
-  const wrapper = render(
+  render(
     <ServersProvider>
       <Formulario />{' '}
     </ServersProvider>
   );
-  // wrapper.debug();
 
   const btnSubmit = screen.getByTestId('btn-submit');
   fireEvent.click(btnSubmit);
 });
 
 test('<Formulario />Cargar el formulario y revisar el submit', () => {
-  const wrapper = render(
+  render(
     <ServersProvider>
       <Formulario />{' '}
     </ServersProvider>
   );
-  // wrapper.debug();
 
   fireEvent.change(
     screen.getByTestId('descripcion', {
