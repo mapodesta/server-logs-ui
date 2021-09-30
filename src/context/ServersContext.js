@@ -18,7 +18,8 @@ const ServersProvider = (props) => {
     if (consultar) {
       const obtenerDataServer = async () => {
         console.log(busqueda);
-        const url = `http://localhost:8080/api/users/getinfobydesc`;
+        const url = `https://server-log-api.herokuapp.com/api/users/getinfobydesc`;
+
         const resultado = await axios.get(url, {
           params: {
             descripcion,
@@ -33,9 +34,9 @@ const ServersProvider = (props) => {
 
   useEffect(() => {
     const obtenerResultado = async () => {
-      const url = `http://localhost:8080/api/users/geterrores`;
+      const url = `https://server-log-api.herokuapp.com/api/users/geterrores`;
       const resultado = await axios.get(url);
-      const urlServers = `http://localhost:8080/api/users/getservers`;
+      const urlServers = `https://server-log-api.herokuapp.com/api/users/getservers`;
       const listadoServers = await axios.get(urlServers);
       guardarErrores(resultado.data);
       guardarServer(listadoServers);
