@@ -27,9 +27,9 @@ const Formulario = () => {
         guardarConsultar(true);
       }}
     >
-      <fieldset className="text-center">
-        <legend>Monitoreo Servidores MELI</legend>
-      </fieldset>
+      <div className="text-center">
+        <h2>Monitoreo Servidores MELI</h2>
+      </div>
       <div className="row mt-4">
         <div className="col-md-4">
           <input

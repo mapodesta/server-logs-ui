@@ -1,7 +1,7 @@
 import React from 'react';
 const Header = () => {
   return (
-    <header className="bg-alert">
+    <header>
       <h1>Servidores MELI</h1>
     </header>
   );

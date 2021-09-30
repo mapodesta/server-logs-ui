@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './components/header';
+import Header from './components/Header';
 import Formulario from './components/Formulario';
 import ListaErrores from './components/ListaErrores';
 import ServersProvider from './context/ServersContext';
