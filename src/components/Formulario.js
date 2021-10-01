@@ -2,17 +2,16 @@ import React, { useContext, useState } from 'react';
 import { ServersContext } from '../context/ServersContext';
 
 const Formulario = () => {
-  const [busqueda, guardarBusqueda] = useState({
-    descripcion: '',
+  const [search, saveSearch] = useState({
+    description: '',
     server: '',
   });
 
-  const { buscarErrores, guardarConsultar, servers } =
-    useContext(ServersContext);
+  const { searchErrors, saveConsult, servers } = useContext(ServersContext);
 
-  const obtenerDatos = (e) => {
-    guardarBusqueda({
-      ...busqueda,
+  const getData = (e) => {
+    saveSearch({
+      ...search,
       [e.target.name]: e.target.value,
     });
   };
@@ -21,10 +20,9 @@ const Formulario = () => {
     <form
       className="col-12"
       onSubmit={(e) => {
-        console.log(busqueda);
         e.preventDefault();
-        buscarErrores(busqueda);
-        guardarConsultar(true);
+        searchErrors(search);
+        saveConsult(true);
       }}
     >
       <div className="text-center">
@@ -33,12 +31,12 @@ const Formulario = () => {
       <div className="row mt-4">
         <div className="col-md-4">
           <input
-            data-testid="descripcion"
-            name="descripcion"
+            data-testid="description"
+            name="description"
             className="form-control"
             type="text"
             placeholder="Descripcion de falla"
-            onChange={obtenerDatos}
+            onChange={getData}
           />
         </div>
         <div className="col-md-4">
@@ -46,7 +44,7 @@ const Formulario = () => {
             className="form-control"
             data-testid="server"
             name="server"
-            onChange={obtenerDatos}
+            onChange={getData}
           >
             <option value="" data-testid="serveroptions">
               Selecciona server
@@ -59,7 +57,7 @@ const Formulario = () => {
                     name="server"
                     key={index}
                     value={server.server}
-                    onChange={obtenerDatos}
+                    onChange={getData}
                   >
                     {server.server}
                   </option>

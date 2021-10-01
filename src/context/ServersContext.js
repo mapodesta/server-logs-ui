@@ -4,23 +4,23 @@ import useFetch from '../hooks/useFetch';
 export const ServersContext = createContext();
 
 const ServersProvider = (props) => {
-  const [busqueda, buscarErrores] = useState({
-    nombre: '',
-    categoria: '',
+  const [search, searchErrors] = useState({
+    description: '',
+    server: '',
   });
-  const [consultar, guardarConsultar] = useState(false);
+  const [consult, saveConsult] = useState(false);
 
-  const { descripcion, server } = busqueda;
+  const { description, server } = search;
 
-  const [errores, servers] = useFetch(busqueda, consultar, server, descripcion);
+  const [errors, servers] = useFetch(search, consult, server, description);
 
   return (
     <ServersContext.Provider
       value={{
-        errores,
+        errors,
         servers,
-        buscarErrores,
-        guardarConsultar,
+        searchErrors,
+        saveConsult,
       }}
     >
       {props.children}

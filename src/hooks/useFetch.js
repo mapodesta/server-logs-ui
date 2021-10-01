@@ -1,36 +1,36 @@
 import { API } from '../axios/config';
 import { useEffect, useState } from 'react';
 
-const useFetch = (busqueda, consultar, server, descripcion) => {
-  const [errores, guardarErrores] = useState([]);
-  const [servers, guardarServer] = useState([]);
+const useFetch = (search, consult, server, description) => {
+  const [errors, saveErrors] = useState([]);
+  const [servers, saveServers] = useState([]);
 
   useEffect(() => {
-    if (consultar) {
-      const obtenerDataServer = async () => {
-        const resultado = await API.get('/getinfobydesc', {
+    if (consult) {
+      const getDataServer = async () => {
+        const result = await API.get('/getinfobydesc', {
           params: {
-            descripcion,
+            description,
             server,
           },
         });
-        guardarErrores(resultado.data);
+        saveErrors(result.data);
       };
-      obtenerDataServer();
+      getDataServer();
     }
-  }, [busqueda, consultar, server, descripcion]);
+  }, [search, consult, server, description]);
 
   useEffect(() => {
-    const obtenerResultado = async () => {
-      const resultado = await API.get('/geterrores');
+    const getResult = async () => {
+      const result = await API.get('/geterrores');
       const listadoServers = await API.get('/getservers');
-      guardarErrores(resultado.data);
-      guardarServer(listadoServers);
+      saveErrors(result.data);
+      saveServers(listadoServers);
     };
-    obtenerResultado();
+    getResult();
   }, []);
 
-  return [errores, servers];
+  return [errors, servers];
 };
 
 export default useFetch;

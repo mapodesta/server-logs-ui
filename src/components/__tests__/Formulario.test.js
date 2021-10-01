@@ -33,7 +33,7 @@ test('<Formulario />Cargar el formulario y revisar el submit', () => {
   );
 
   fireEvent.change(
-    screen.getByTestId('descripcion', {
+    screen.getByTestId('description', {
       target: { value: 'fatal-error' },
     })
   );

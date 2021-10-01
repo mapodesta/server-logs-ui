@@ -4,7 +4,7 @@ import paginationFactory from 'react-bootstrap-table2-paginator';
 import BootstrapTable from 'react-bootstrap-table-next';
 
 const ListaErrores = () => {
-  const { errores } = useContext(ServersContext);
+  const { errors } = useContext(ServersContext);
 
   const columns = [
     {
@@ -29,7 +29,7 @@ const ListaErrores = () => {
       <div className="row mt-5">
         <BootstrapTable
           keyField="idServers"
-          data={errores}
+          data={errors}
           columns={columns}
           pagination={paginationFactory()}
         />
