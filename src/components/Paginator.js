@@ -12,7 +12,8 @@ const Paginator = () => {
 
   useEffect(() => {
     saveConsult(true);
-  }, [offset, saveConsult]);
+    setOffset(0);
+  }, [offset, saveConsult, setOffset]);
 
   return (
     <>
