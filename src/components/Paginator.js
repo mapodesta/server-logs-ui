@@ -18,11 +18,7 @@ const Paginator = () => {
   return (
     <>
       {currentPageNumbers?.map((pages, index) => (
-        <Pagination.Item
-          key={index}
-          onClick={() => setOffset(index)}
-          active={offset === index}
-        >
+        <Pagination.Item key={index} onClick={() => setOffset(index)}>
           {pages + 1}
         </Pagination.Item>
       ))}
