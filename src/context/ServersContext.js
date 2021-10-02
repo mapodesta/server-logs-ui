@@ -8,19 +8,31 @@ const ServersProvider = (props) => {
     description: '',
     server: '',
   });
+
+  const [offset, setOffset] = useState(0);
+
   const [consult, saveConsult] = useState(false);
 
   const { description, server } = search;
 
-  const [errors, servers] = useFetch(search, consult, server, description);
+  const [errors, servers, paginationInfo] = useFetch(
+    search,
+    consult,
+    server,
+    description,
+    offset
+  );
 
   return (
     <ServersContext.Provider
       value={{
         errors,
         servers,
+        offset,
+        paginationInfo,
         searchErrors,
         saveConsult,
+        setOffset,
       }}
     >
       {props.children}

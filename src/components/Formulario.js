@@ -49,8 +49,7 @@ const Formulario = () => {
             <option value="" data-testid="serveroptions">
               Selecciona server
             </option>
-            {servers &&
-              servers.data &&
+            {servers?.data?.length &&
               servers.data.map((server, index) => {
                 return (
                   <option

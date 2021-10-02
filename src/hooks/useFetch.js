@@ -1,9 +1,10 @@
 import { API } from '../axios/config';
 import { useEffect, useState } from 'react';
 
-const useFetch = (search, consult, server, description) => {
+const useFetch = (search, consult, server, description, offset) => {
   const [errors, saveErrors] = useState([]);
   const [servers, saveServers] = useState([]);
+  const [paginationInfo, savePaginationInfo] = useState({});
 
   useEffect(() => {
     if (consult) {
@@ -12,25 +13,25 @@ const useFetch = (search, consult, server, description) => {
           params: {
             description,
             server,
+            offset,
           },
         });
-        saveErrors(result.data);
+        saveErrors(result.data.serverInfo);
+        savePaginationInfo(result.data.paginationValue);
       };
       getDataServer();
     }
-  }, [search, consult, server, description]);
+  }, [search, consult, server, description, offset]);
 
   useEffect(() => {
     const getResult = async () => {
-      const result = await API.get('/geterrores');
       const listadoServers = await API.get('/getservers');
-      saveErrors(result.data);
       saveServers(listadoServers);
     };
     getResult();
   }, []);
 
-  return [errors, servers];
+  return [errors, servers, paginationInfo];
 };
 
 export default useFetch;
