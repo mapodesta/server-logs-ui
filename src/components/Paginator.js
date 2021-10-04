@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { ServersContext } from '../context/ServersContext';
 import Pagination from 'react-bootstrap/Pagination';
-
+import './Index.css';
 const Paginator = () => {
   const { offset, setOffset, paginationInfo, saveConsult } =
     useContext(ServersContext);
